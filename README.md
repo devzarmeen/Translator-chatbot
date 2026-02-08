@@ -220,13 +220,32 @@ The application will automatically open in your default web browser at `http://l
 - **Read Aloud**: Click 🔊 button to hear the translation
 - **Regenerate**: Click 🔄 to regenerate a response with context
 
+## ☁️ Deploy to Streamlit Cloud
+
+1. Push your repo to GitHub
+2. Go to [share.streamlit.io](https://share.streamlit.io) and deploy
+3. Set **Main file path** to `frontend/app.py`
+4. Add **Secrets** in Advanced settings (TOML format):
+
+   ```toml
+   GROQ_API_KEY = "your-groq-api-key"
+   OPENAI_API_KEY = "your-openai-api-key"
+   ```
+
+5. Redeploy after any changes
+
+**Note:** `packages.txt` installs Tesseract for OCR. `openai` is required (Whisper STT, simplifier).
+
 ## 🔧 Configuration
 
 ### API Keys
 
-- **OpenAI API Key**: Required for simplifier mode and Whisper STT fallback
+- **GROQ_API_KEY**: Required for translation (primary)
+  - Get from: https://console.groq.com/keys
+  - Add to `.env` file or Streamlit secrets
+- **OPENAI_API_KEY**: Required for simplifier mode and Whisper STT fallback
   - Get from: https://platform.openai.com/api-keys
-  - Add to `.env` file as `OPENAI_API_KEY`
+  - Add to `.env` file or Streamlit secrets
 
 ### Tesseract OCR
 
@@ -263,7 +282,8 @@ If installed in a custom location, set `TESSERACT_CMD` in `.env` file.
 ## 📚 Dependencies
 
 - **streamlit**: Web UI framework
-- **googletrans**: Google Translate API wrapper
+- **groq**: Groq API for translation
+- **deep-translator**: Language detection
 - **openai**: OpenAI API client (for simplifier and Whisper)
 - **speechrecognition**: Speech-to-Text functionality
 - **gtts**: Google Text-to-Speech

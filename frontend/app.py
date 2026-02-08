@@ -21,6 +21,14 @@ from typing import Optional
 
 import streamlit as st
 
+# Inject Streamlit Cloud secrets into os.environ so backend modules (which use os.getenv) can find them
+try:
+    for key in ("GROQ_API_KEY", "OPENAI_API_KEY", "TESSERACT_CMD"):
+        if hasattr(st, "secrets") and key in st.secrets and key not in os.environ:
+            os.environ[key] = str(st.secrets[key])
+except Exception:
+    pass
+
 # Ensure project root (containing `backend` and `frontend`) is on sys.path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
