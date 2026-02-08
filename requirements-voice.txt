@@ -1,0 +1,4 @@
+# Optional: PyAudio for microphone/voice input (Voice Translation tab).
+# Requires Python 3.8-3.13 on Windows (no pre-built wheel for 3.14 yet).
+# Install with: pip install -r requirements-voice.txt
+pyaudio>=0.2.11
