@@ -1,3 +1,1 @@
-# System dependencies for Streamlit Cloud (Debian Linux)
-# Required for OCR image-to-text functionality
 tesseract-ocr
